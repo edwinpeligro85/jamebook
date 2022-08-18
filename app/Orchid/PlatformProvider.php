@@ -28,13 +28,17 @@ class PlatformProvider extends OrchidServiceProvider
     public function registerMainMenu(): array
     {
         return [
-            Menu::make('Example screen')
+            Menu::make('Tablero')
                 ->icon('monitor')
                 ->route('platform.example')
-                ->title('Navigation')
                 ->badge(function () {
                     return 6;
                 }),
+
+            Menu::make('Libros')
+                ->icon('book-open')
+                ->route('platform.catalog-manager.book')
+                ->title('Administrar catálogo'),
 
             Menu::make('Dropdown menu')
                 ->icon('code')
