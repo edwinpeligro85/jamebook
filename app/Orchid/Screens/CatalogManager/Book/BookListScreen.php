@@ -2,6 +2,9 @@
 
 namespace App\Orchid\Screens\CatalogManager\Book;
 
+use App\Models\Book;
+use App\Orchid\Layouts\CatalogManager\Book\BookListLayout;
+use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
 
 class BookListScreen extends Screen
@@ -13,7 +16,9 @@ class BookListScreen extends Screen
      */
     public function query(): iterable
     {
-        return [];
+        return [
+            'books' => Book::paginate(),
+        ];
     }
 
     /**
@@ -43,7 +48,11 @@ class BookListScreen extends Screen
      */
     public function commandBar(): iterable
     {
-        return [];
+        return [
+            Link::make('Agregar')
+                ->icon('plus')
+                ->route('platform.catalog-manager.books.create'),
+        ];
     }
 
     /**
@@ -53,6 +62,8 @@ class BookListScreen extends Screen
      */
     public function layout(): iterable
     {
-        return [];
+        return [
+            BookListLayout::class,
+        ];
     }
 }

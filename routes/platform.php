@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Orchid\Screens\CatalogManager\Book\BookEditScreen;
 use App\Orchid\Screens\CatalogManager\Book\BookListScreen;
 use App\Orchid\Screens\Examples\ExampleCardsScreen;
 use App\Orchid\Screens\Examples\ExampleChartsScreen;
@@ -34,8 +35,31 @@ use Tabuna\Breadcrumbs\Trail;
 Route::screen('/main', PlatformScreen::class)
     ->name('platform.main');
 
-Route::screen('/catalog-manager/books', BookListScreen::class)
-    ->name('platform.catalog-manager.book');
+// Platform > Catalog Manager > Books
+Route::screen('catalog-manager/books', BookListScreen::class)
+    ->name('platform.catalog-manager.books')
+    ->breadcrumbs(function (Trail $trail) {
+        return $trail
+            ->parent('platform.index')
+            ->push('Libros', route('platform.catalog-manager.books'));
+    });
+// Platform > Catalog Manager > Books > Create
+Route::screen('catalog-manager/books/create', BookEditScreen::class)
+    ->name('platform.catalog-manager.books.create')
+    ->breadcrumbs(function (Trail $trail) {
+        return $trail
+            ->parent('platform.catalog-manager.books')
+            ->push('Libros', route('platform.catalog-manager.books.create'));
+    });
+// Platform > Catalog Manager > Books > Create
+Route::screen('catalog-manager/books/{book}/edit', BookEditScreen::class)
+    ->name('platform.catalog-manager.books.edit')
+    ->breadcrumbs(function (Trail $trail, $book) {
+        return $trail
+            ->parent('platform.catalog-manager.books')
+            ->push('Libro - ' . $book->title, route('platform.catalog-manager.books.edit', $book));
+    });
+
 
 // Platform > Profile
 Route::screen('profile', UserProfileScreen::class)
