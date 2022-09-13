@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Ecommerce\Home\Index;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,4 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', Index::class)->name('home');
