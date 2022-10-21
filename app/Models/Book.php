@@ -61,4 +61,19 @@ class Book extends Model
     {
         return $this->hasOne(Attachment::class, 'id', 'picture_id')->withDefault();
     }
+
+    public function getDisplayPriceAttribute(): float
+    {
+        return $this->in_promotion ? $this->promotional_price : $this->price;
+    }
+
+    public function getInPromotionAttribute(): bool
+    {
+        return $this->promotional_price > 0;
+    }
+
+    public function getDiscountPercentageAttribute(): float
+    {
+        return $this->in_promotion ? round((($this->price - $this->promotional_price) / $this->price) * 100, 2) : 0;
+    }
 }

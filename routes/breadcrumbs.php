@@ -10,11 +10,11 @@ Breadcrumbs::for('home', function (BreadcrumbTrail $trail) {
     $trail->push('Home', route('home'));
 });
 
-// // Home > Blog
-// Breadcrumbs::for('blog', function (BreadcrumbTrail $trail) {
-//     $trail->parent('home');
-//     $trail->push('Blog', route('blog'));
-// });
+// Home > Shop
+Breadcrumbs::for('shop.index', function (BreadcrumbTrail $trail) {
+    $trail->parent('home');
+    $trail->push('Shop', route('shop.index'));
+});
 
 // // Home > Blog > [Category]
 // Breadcrumbs::for('category', function (BreadcrumbTrail $trail, $category) {

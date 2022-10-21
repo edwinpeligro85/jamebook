@@ -3,7 +3,7 @@
         <a href="{{ route('home') }}">Home</a>
     </li>
     <li class="menu-item">
-        <a href="{{ route('home') }}">Shop</a>
+        <a href="{{ route('shop.index') }}">Shop</a>
     </li>
     <li class="menu-item">
         <a href="contact.html">Contact</a>

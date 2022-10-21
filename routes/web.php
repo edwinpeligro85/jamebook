@@ -1,7 +1,9 @@
 <?php
 
-use App\Http\Livewire\Ecommerce\Home\Index;
+use App\Http\Livewire\Ecommerce\Home\Index as HomeIndex;
+use App\Http\Livewire\Ecommerce\Shop\Index as ShopIndex;
 use Illuminate\Support\Facades\Route;
+use Tabuna\Breadcrumbs\Trail;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,4 +16,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', Index::class)->name('home');
+Route::get('/', HomeIndex::class)->name('home')
+    ->breadcrumbs(fn (Trail $trail) => $trail->push('Home', 'home'));
+
+Route::get('/shop', ShopIndex::class)->name('shop.index')
+    ->breadcrumbs(fn (Trail $trail) =>
+        $trail->parent('home')->push('Shop', 'shop.index'));
