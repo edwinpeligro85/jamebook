@@ -34,6 +34,7 @@ class BookEditLayout extends Rows
                 ->title('Inventario:')
                 ->type('number')
                 ->horizontal()
+                ->required()
                 ->min(0),
 
             Input::make('book.isbn')

@@ -19,6 +19,6 @@ use Tabuna\Breadcrumbs\Trail;
 Route::get('/', HomeIndex::class)->name('home')
     ->breadcrumbs(fn (Trail $trail) => $trail->push('Home', 'home'));
 
-Route::get('/shop', ShopIndex::class)->name('shop.index')
-    ->breadcrumbs(fn (Trail $trail) =>
-        $trail->parent('home')->push('Shop', 'shop.index'));
+Route::get('/shop', ShopIndex::class)->name('shop.index');
+    // ->breadcrumbs(fn (Trail $trail) =>
+    //     $trail->parent('home')->push('Shop', 'shop.index'));

@@ -9,7 +9,9 @@
     <title>Jame Book - Book Store</title>
 
     <!-- Use Minified Plugins Version For Fast Page Load -->
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}">
+    <link rel="shortcut icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('images/favicon.ico') }}" type="image/x-icon">
+    <meta name="theme-color" content="#ffffff">
 
     @vite(['resources/css/plugins.css', 'resources/css/main.css'])
 
