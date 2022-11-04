@@ -35,24 +35,14 @@
         <div class="col-lg-4 col-md-4 col-sm-6 mt--10 mt-md--0 ">
             <div class="sorting-selection">
                 <span>Sort By:</span>
-                <select class="form-control nice-select sort-select mr-0">
-                    <option value="" selected="selected">Default Sorting</option>
-                    <option value="">Sort
-                        By:Name (A - Z)</option>
-                    <option value="">Sort
-                        By:Name (Z - A)</option>
-                    <option value="">Sort
-                        By:Price (Low &gt; High)</option>
-                    <option value="">Sort
-                        By:Price (High &gt; Low)</option>
-                    <option value="">Sort
-                        By:Rating (Highest)</option>
-                    <option value="">Sort
-                        By:Rating (Lowest)</option>
-                    <option value="">Sort
-                        By:Model (A - Z)</option>
-                    <option value="">Sort
-                        By:Model (Z - A)</option>
+                <select id="sort-select" class="form-control nice-select sort-select mr-0">
+                    <option value="publication_date-desc" selected="selected">
+                        Default Sorting
+                    </option>
+                    <option value="title-asc">Sort By:Title (A - Z)</option>
+                    <option value="title-desc">Sort By:Title (Z - A)</option>
+                    <option value="price-asc">Sort By:Price (Low &gt; High)</option>
+                    <option value="price-desc">Sort By:Price (High &gt; Low)</option>
                 </select>
             </div>
         </div>
@@ -62,7 +52,8 @@
 @push('js')
     <script>
         window.onload = () => {
-            $('#itemsPerPage').on('change', ({target: {value}}) => Livewire.emit('updatedItemsPerPage', value));
+            $('#itemsPerPage').on('change', ({ target: { value } }) => Livewire.emit('updatedItemsPerPage', value));
+            $('#sort-select').on('change', ({ target: { value } }) => Livewire.emit('updatedSortSelect', value.split('-')));
         }
     </script>
 @endpush

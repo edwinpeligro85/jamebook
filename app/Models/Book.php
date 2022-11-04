@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Model;
 use Orchid\Attachment\Attachable;
 use Orchid\Attachment\Models\Attachment;
@@ -11,7 +12,7 @@ use Spatie\Sluggable\SlugOptions;
 
 class Book extends Model
 {
-    use AsSource, HasSlug;
+    use AsSource, HasSlug, Filterable;
 
     /**
      * The attributes that are mass assignable.
