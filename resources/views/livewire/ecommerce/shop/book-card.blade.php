@@ -8,13 +8,13 @@
         </div>
         <div class="product-card--body">
             <div class="card-image">
-                <img src="https://picsum.photos/700/700" alt="">
+                <img src="{{ $book->picture_url }}" alt="">
                 <div class="hover-contents">
                     <a href="product-details.html" class="hover-image">
-                        <img src="https://picsum.photos/700/700" alt="">
+                        <img src="{{ $book->picture_url }}" alt="">
                     </a>
                     <div class="hover-btns">
-                        <a href="cart.html" class="single-btn">
+                        <a wire:click="addToCart" class="single-btn">
                             <i class="fas fa-shopping-basket"></i>
                         </a>
                         <a href="wishlist.html" class="single-btn">

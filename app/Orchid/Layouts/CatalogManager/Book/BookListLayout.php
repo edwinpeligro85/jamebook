@@ -46,14 +46,14 @@ class BookListLayout extends Table
                         ->list([
 
                             Link::make('Editar')
-                                ->route('platform.catalog-manager.books.edit', $book->id)
+                                ->route('platform.catalog-manager.books.edit', $book->slug)
                                 ->icon('pencil'),
 
                             Button::make('Eliminar')
                                 ->icon('trash')
                                 ->confirm(__('Una vez que elimine el libro pasará a una categoría de “histórico” agotado.'))
                                 ->method('remove', [
-                                    'id' => $book->id,
+                                    'id' => $book->slug,
                                 ]),
                         ]);
                 }),

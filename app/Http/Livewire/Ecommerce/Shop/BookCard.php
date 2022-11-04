@@ -13,4 +13,12 @@ class BookCard extends Component
     {
         return view('livewire.ecommerce.shop.book-card');
     }
+
+    public function addToCart()
+    {
+        $this->book->addToCart('shopping', [
+            'quantity' => 1
+        ]);
+        $this->emit('cartUpdated');
+    }
 }

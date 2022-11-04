@@ -4,15 +4,20 @@ namespace App\Models;
 
 use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Model;
+use Jackiedo\Cart\Contracts\UseCartable;
+use Jackiedo\Cart\Traits\CanUseCart;
 use Orchid\Attachment\Attachable;
 use Orchid\Attachment\Models\Attachment;
 use Orchid\Screen\AsSource;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 
-class Book extends Model
+class Book extends Model implements UseCartable
 {
-    use AsSource, HasSlug, Filterable;
+    use AsSource, HasSlug, Filterable, CanUseCart;
+
+    protected $cartTitleField = 'title';
+    protected $cartPriceField = 'display_price';
 
     /**
      * The attributes that are mass assignable.
@@ -21,6 +26,7 @@ class Book extends Model
      */
     protected $fillable = [
         'isbn',
+        'slug',
         'price',
         'title',
         'stock',
@@ -83,6 +89,11 @@ class Book extends Model
     public function picture()
     {
         return $this->hasOne(Attachment::class, 'id', 'picture_id')->withDefault();
+    }
+
+    public function getPictureUrlAttribute()
+    {
+        return 'https://picsum.photos/700/700';
     }
 
     public function getDisplayPriceAttribute(): float
