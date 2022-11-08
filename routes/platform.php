@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Orchid\Screens\CatalogManager\Author\AuthorEditScreen;
+use App\Orchid\Screens\CatalogManager\Author\AuthorListScreen;
 use App\Orchid\Screens\CatalogManager\Book\BookEditScreen;
 use App\Orchid\Screens\CatalogManager\Book\BookListScreen;
 use App\Orchid\Screens\Examples\ExampleCardsScreen;
@@ -51,13 +53,39 @@ Route::screen('catalog-manager/books/create', BookEditScreen::class)
             ->parent('platform.catalog-manager.books')
             ->push('Libros', route('platform.catalog-manager.books.create'));
     });
-// Platform > Catalog Manager > Books > Create
+// Platform > Catalog Manager > Books > Edit
 Route::screen('catalog-manager/books/{book}/edit', BookEditScreen::class)
     ->name('platform.catalog-manager.books.edit')
     ->breadcrumbs(function (Trail $trail, $book) {
         return $trail
             ->parent('platform.catalog-manager.books')
             ->push('Libro - ' . $book->title, route('platform.catalog-manager.books.edit', $book));
+    });
+
+
+// Platform > Catalog Manager > authors
+Route::screen('catalog-manager/authors', AuthorListScreen::class)
+    ->name('platform.catalog-manager.authors')
+    ->breadcrumbs(function (Trail $trail) {
+        return $trail
+            ->parent('platform.index')
+            ->push('Autores', route('platform.catalog-manager.authors'));
+    });
+// Platform > Catalog Manager > authors > Create
+Route::screen('catalog-manager/authors/create', AuthorEditScreen::class)
+    ->name('platform.catalog-manager.authors.create')
+    ->breadcrumbs(function (Trail $trail) {
+        return $trail
+            ->parent('platform.catalog-manager.authors')
+            ->push('Autores', route('platform.catalog-manager.authors.create'));
+    });
+// Platform > Catalog Manager > authors > Edit
+Route::screen('catalog-manager/authors/{author}/edit', AuthorEditScreen::class)
+    ->name('platform.catalog-manager.authors.edit')
+    ->breadcrumbs(function (Trail $trail, $author) {
+        return $trail
+            ->parent('platform.catalog-manager.authors')
+            ->push('Autor - ' . $author->first_name, route('platform.catalog-manager.authors.edit', $author));
     });
 
 

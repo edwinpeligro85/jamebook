@@ -24,14 +24,11 @@ class Book extends Model implements UseCartable
      *
      * @var array
      */
-    protected $fillable = [
-        'isbn',
-        'slug',
-        'price',
-        'title',
-        'stock',
-        'author_id',
-        'picture_id',
+    protected $guarded = [
+        'id',
+        'created_at',
+        'updated_at',
+        'deleted_at'
     ];
 
     /**

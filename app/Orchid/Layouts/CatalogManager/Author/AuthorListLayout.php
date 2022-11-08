@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Orchid\Layouts\CatalogManager\Book;
+namespace App\Orchid\Layouts\CatalogManager\Author;
 
-use App\Models\Book;
+use App\Models\Author;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
 
-class BookListLayout extends Table
+class AuthorListLayout extends Table
 {
     /**
      * Data source.
@@ -19,7 +19,7 @@ class BookListLayout extends Table
      *
      * @var string
      */
-    protected $target = 'books';
+    protected $target = 'authors';
 
     /**
      * Get the table cells to be displayed.
@@ -29,47 +29,32 @@ class BookListLayout extends Table
     protected function columns(): iterable
     {
         return [
-            TD::make('isbn', 'ISBN')
-                ->render(function (Book $book) {
-                return ucwords($book->isbn);
-                }),
-
-            TD::make('title', 'Titulo')
-                ->render(function (Book $book) {
-                return ucwords($book->title);
-                }),
-
-            TD::make('price', 'Precio')
-                ->render(function (Book $book) {
-                return ucwords($book->price);
-                }),
-
-            TD::make('stock', 'Stock')
-                ->render(function (Book $book) {
-                return ucwords($book->stock);
+            TD::make('name','Nombre')
+                ->cantHide()
+                ->render(function (Author $author) {
+                    return ucwords($author->getFullNameAttribute());
                 }),
 
             TD::make('Acciones')
                 ->align(TD::ALIGN_CENTER)
                 ->width('100px')
-                ->render(function (Book $book) {
+                ->render(function (Author $author) {
                     return DropDown::make()
                         ->icon('options-vertical')
                         ->list([
 
                             Link::make('Editar')
-                                ->route('platform.catalog-manager.books.edit', $book->slug)
+                                ->route('platform.catalog-manager.authors.edit', $author->id)
                                 ->icon('pencil'),
 
                             Button::make('Eliminar')
                                 ->icon('trash')
-                                ->confirm(__('Una vez que elimine el libro pasará a una categoría de “histórico agotado".'))
+                                ->confirm(__('¿Estas seguro?".'))
                                 ->method('remove', [
-                                    'id' => $book->slug,
+                                    'id' => $author->id,
                                 ]),
                         ]);
                 }),
-            // TD::make('created_at')->sort(),
         ];
     }
 }

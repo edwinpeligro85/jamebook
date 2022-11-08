@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Orchid\Screens\CatalogManager\Book;
+namespace App\Orchid\Screens\CatalogManager\Author;
 
-use App\Models\Book;
-use App\Orchid\Layouts\CatalogManager\Book\BookListLayout;
+use App\Models\Author;
+use App\Orchid\Layouts\CatalogManager\Author\AuthorListLayout;
 use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Screen;
 
-class BookListScreen extends Screen
+class AuthorListScreen extends Screen
 {
     /**
      * Query data.
@@ -15,9 +15,9 @@ class BookListScreen extends Screen
      * @return array
      */
     public function query(): iterable
-    {
+    {   
         return [
-            'books' => Book::paginate(),
+            'authors' => Author::paginate()
         ];
     }
 
@@ -28,17 +28,7 @@ class BookListScreen extends Screen
      */
     public function name(): ?string
     {
-        return 'Libros';
-    }
-
-    /**
-     * Display header description.
-     *
-     * @return string|null
-     */
-    public function description(): ?string
-    {
-        return 'Todos los libros registrados';
+        return 'Autor';
     }
 
     /**
@@ -51,7 +41,7 @@ class BookListScreen extends Screen
         return [
             Link::make('Agregar')
                 ->icon('plus')
-                ->route('platform.catalog-manager.books.create'),
+                ->route('platform.catalog-manager.authors.create'),
         ];
     }
 
@@ -63,7 +53,7 @@ class BookListScreen extends Screen
     public function layout(): iterable
     {
         return [
-            BookListLayout::class,
+            AuthorListLayout::class
         ];
     }
 }
