@@ -4,6 +4,7 @@ namespace App\Models;
 
 use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Jackiedo\Cart\Contracts\UseCartable;
 use Jackiedo\Cart\Traits\CanUseCart;
 use Orchid\Attachment\Attachable;
@@ -14,7 +15,7 @@ use Spatie\Sluggable\SlugOptions;
 
 class Book extends Model implements UseCartable
 {
-    use AsSource, HasSlug, Filterable, CanUseCart;
+    use AsSource, HasSlug, Filterable, CanUseCart,SoftDeletes;
 
     protected $cartTitleField = 'title';
     protected $cartPriceField = 'display_price';

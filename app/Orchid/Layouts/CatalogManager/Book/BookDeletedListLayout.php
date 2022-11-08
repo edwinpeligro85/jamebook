@@ -5,11 +5,10 @@ namespace App\Orchid\Layouts\CatalogManager\Book;
 use App\Models\Book;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
-use Orchid\Screen\Actions\Link;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
 
-class BookListLayout extends Table
+class BookDeletedListLayout extends Table
 {
     /**
      * Data source.
@@ -19,7 +18,7 @@ class BookListLayout extends Table
      *
      * @var string
      */
-    protected $target = 'books';
+    protected $target = 'booksDeleted';
 
     /**
      * Get the table cells to be displayed.
@@ -44,9 +43,9 @@ class BookListLayout extends Table
                 return ucwords($book->price);
                 }),
 
-            TD::make('stock', 'Stock')
+            TD::make('deleted_at', 'Fecha eliminación')
                 ->render(function (Book $book) {
-                return ucwords($book->stock);
+                return ucwords($book->deleted_at);
                 }),
 
             TD::make('Acciones')
@@ -56,20 +55,14 @@ class BookListLayout extends Table
                     return DropDown::make()
                         ->icon('options-vertical')
                         ->list([
-
-                            Link::make('Editar')
-                                ->route('platform.catalog-manager.books.edit', $book->slug)
-                                ->icon('pencil'),
-
-                            Button::make('Eliminar')
+                            Button::make('Restaurar')
                                 ->icon('trash')
-                                ->confirm(__('Una vez que elimine el libro pasará a una categoría de “histórico agotado".'))
-                                ->method('deleteBook', [
+                                ->confirm("¿Deseas restaurar este libro?")
+                                ->method('restoreBook', [
                                     'id' => $book->slug,
                                 ]),
                         ]);
                 }),
-            // TD::make('created_at')->sort(),
         ];
     }
 }
