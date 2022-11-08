@@ -49,7 +49,7 @@ class AuthorListLayout extends Table
 
                             Button::make('Eliminar')
                                 ->icon('trash')
-                                ->confirm(__('¿Estas seguro?".'))
+                                ->confirm(" ")
                                 ->method('remove', [
                                     'id' => $author->id,
                                 ]),
