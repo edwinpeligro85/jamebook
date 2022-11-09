@@ -29,6 +29,13 @@ class BookListLayout extends Table
     protected function columns(): iterable
     {
         return [
+
+            TD::make('picture_id', 'Imagen')
+                ->render(function (Book $book) {
+                    $path = $book->getPictureUrlAttribute();
+                    return view('platform.catalog-manager.book.picture-book-table',compact('path'));
+                }),
+
             TD::make('isbn', 'ISBN')
                 ->render(function (Book $book) {
                 return ucwords($book->isbn);

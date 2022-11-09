@@ -70,25 +70,12 @@ class BookEditScreen extends Screen
      */
     public function save(Book $book, Request $request)
     {
-        // $request->validate([
-        //     'user.email' => [
-        //         'required',
-        //         Rule::unique(User::class, 'email')->ignore($user),
-        //     ],
-        // ]);
-
-        $book->fill($request->get('book'))->save();
-
-        // $book->attachment()->syncWithoutDetaching(
-        //     $request->input('book.picture', [])
-        // );
-
-        //     dd($request->file('picture'));
-        // if ($request->has('picture')) {
-
-        //     $file = new File($request->file('picture'));
-        //     $attachment = $file->load();
-        // }
+        if ($request->picture_id) {
+            $book->picture->delete();
+            $book->picture_id = $request->picture_id;
+        }
+        $book->fill($request->get('book'));
+        $book->save();
 
         Toast::info('El libro fue guardado.');
 

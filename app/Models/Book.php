@@ -15,7 +15,7 @@ use Spatie\Sluggable\SlugOptions;
 
 class Book extends Model implements UseCartable
 {
-    use AsSource, HasSlug, Filterable, CanUseCart,SoftDeletes;
+    use AsSource, HasSlug, Filterable, CanUseCart,SoftDeletes,Attachable;
 
     protected $cartTitleField = 'title';
     protected $cartPriceField = 'display_price';
@@ -91,7 +91,12 @@ class Book extends Model implements UseCartable
 
     public function getPictureUrlAttribute()
     {
-        return 'https://picsum.photos/700/700';
+        $picture = $this->picture;
+        if ($picture->exists) {
+            return config('app.url')."/storage/".$picture->physicalPath();
+        }else{
+            return 'https://picsum.photos/700/700';
+        }
     }
 
     public function getDisplayPriceAttribute(): float

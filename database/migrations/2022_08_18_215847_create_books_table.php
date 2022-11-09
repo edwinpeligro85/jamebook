@@ -30,6 +30,7 @@ return new class extends Migration
             $table->integer('stock')->default(0)->unsigned();
             $table->date('publication_date')->nullable();
             $table->string('slug')->nullable();
+            $table->string('picture_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

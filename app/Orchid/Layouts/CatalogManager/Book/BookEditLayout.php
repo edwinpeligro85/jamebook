@@ -30,6 +30,9 @@ class BookEditLayout extends Rows
     protected function fields(): iterable
     {
         return [
+            Picture::make('picture_id')
+                ->targetId(),
+            
             Input::make('book.stock')
                 ->title('Inventario:')
                 ->type('number')
