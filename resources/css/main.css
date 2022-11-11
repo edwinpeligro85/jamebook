@@ -21280,7 +21280,7 @@ p.form-messege {
     .myaccount-tab-menu a:hover, .myaccount-tab-menu a.active {
       background-color: #62ab00;
       color: #fff; }
-    .myaccount-tab-menu a i {
+    .myaccount-tab-menu a i, .myaccount-tab-menu a em {
       font-size: 14px;
       text-align: center;
       width: 25px; }

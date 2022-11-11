@@ -15,17 +15,26 @@
             <div class="main-navigation flex-lg-right">
                 <div class="cart-widget">
                     <div class="login-block">
-                        <a href="{{ route('auth.login-register') }}" class="font-weight-bold">Login</a>
-                        <br />
-                        <span>or</span><a href="{{ route('auth.login-register') }}">Register</a>
+                        @auth
+                            <a href="{{ route('my-account.index') }}" class="font-weight-bold">
+                                <em class="icons-left fas fa-user"></em> {{ Auth::user()->name }}
+                            </a>
+                        @endauth
+
+                        @guest
+                            <a href="{{ route('auth.login-register') }}" class="font-weight-bold">Login</a>
+                            <br />
+                            <span>or</span><a href="{{ route('auth.login-register') }}">Register</a>
+                        @endguest
                     </div>
+
                     <div class="cart-block">
                         <div class="cart-total">
                             <span class="text-number"> {{ $total_items }} </span>
                             <span class="text-item"> Shopping Cart </span>
                             <span class="price">
                                 $@currency($total)
-                                <i class="fas fa-chevron-down"></i>
+                                <em class="fas fa-chevron-down"></em>
                             </span>
                         </div>
                         <div class="cart-dropdown-block">
@@ -46,7 +55,7 @@
                                             <button
                                                 wire:click="removeItemFromCart('{{ $hash }}', {{ $item->getId() }})"
                                                 class="cross-btn">
-                                                <i class="fas fa-times"></i>
+                                                <em class="fas fa-times text-light"></em>
                                             </button>
                                         </div>
                                     </div>
@@ -57,10 +66,10 @@
 
                             <div class="single-cart-block">
                                 <div class="btn-block">
-                                    <a href="cart.html" class="btn">View Cart <i
-                                            class="fas fa-chevron-right"></i></a>
-                                    <a href="checkout.html" class="btn btn--primary">Check Out <i
-                                            class="fas fa-chevron-right"></i></a>
+                                    <a href="cart.html" class="btn">View Cart <em
+                                            class="fas fa-chevron-right ml-2"></em></a>
+                                    <a href="checkout.html" class="btn btn--primary">Check Out <em
+                                            class="fas fa-chevron-right ml-2"></em></a>
                                 </div>
                             </div>
                         </div>

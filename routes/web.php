@@ -2,6 +2,7 @@
 
 use App\Http\Livewire\Ecommerce\Auth\Index as AuthIndex;
 use App\Http\Livewire\Ecommerce\Home\Index as HomeIndex;
+use App\Http\Livewire\Ecommerce\MyAccount\Index as MyAccountIndex;
 use App\Http\Livewire\Ecommerce\Shop\Index as ShopIndex;
 use App\Http\Livewire\Ecommerce\Shop\BookDetail\Index as BookDetailIndex;
 use App\Models\Book;
@@ -26,17 +27,22 @@ Route::get('/auth/login-register', AuthIndex::class)
     ->name('auth.login-register')
     ->breadcrumbs(
         fn (Trail $trail) =>
-        $trail->parent('home')->push('Login or Register', 'auth.login-register')
+        $trail->parent('home')->push(_('Login or Register'), 'auth.login-register')
+    );
+
+Route::get('/my-account', MyAccountIndex::class)
+    ->name('my-account.index')
+    ->breadcrumbs(
+        fn (Trail $trail) =>
+        $trail->parent('home')->push(_('My Account'), 'my-account.index')
     );
 
 Route::get('/shop', ShopIndex::class)->name('shop.index');
-// ->breadcrumbs(fn (Trail $trail) =>
-//     $trail->parent('home')->push('Shop', 'shop.index'));
 
 Route::get('/shop/{book}', BookDetailIndex::class)
     ->name('shop.show-book')
     ->breadcrumbs(
         fn (Trail $trail, Book $book) =>
         $trail->parent('home')
-            ->push('Book Detail - ' . $book->title, route('shop.show-book', $book->slug))
+            ->push(_('Book Detail') . ' - ' . $book->title, route('shop.show-book', $book->slug))
     );
