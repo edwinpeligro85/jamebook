@@ -15,7 +15,7 @@ use Spatie\Sluggable\SlugOptions;
 
 class Book extends Model implements UseCartable
 {
-    use AsSource, HasSlug, Filterable, CanUseCart,SoftDeletes,Attachable;
+    use AsSource, HasSlug, Filterable, CanUseCart, SoftDeletes, Attachable;
 
     protected $cartTitleField = 'title';
     protected $cartPriceField = 'display_price';
@@ -84,19 +84,25 @@ class Book extends Model implements UseCartable
         return $this->belongsTo(Language::class);
     }
 
-    public function picture()
+    public function pictures()
     {
         return $this->hasOne(Attachment::class, 'id', 'picture_id')->withDefault();
     }
 
     public function getPictureUrlAttribute()
     {
-        $picture = $this->picture;
+        $picture = $this->pictures;
+
         if ($picture->exists) {
-            return config('app.url')."/storage/".$picture->physicalPath();
-        }else{
+            return config('app.url') . "/storage/" . $picture->physicalPath();
+        } else {
             return 'https://picsum.photos/700/700';
         }
+    }
+
+    public function getRouteAttribute()
+    {
+        return route('shop.show-book', $this->slug);
     }
 
     public function getDisplayPriceAttribute(): float

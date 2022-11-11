@@ -106,11 +106,6 @@ class BookEditLayout extends Rows
                 ->mask([
                     'alias' => 'currency',
                 ])->horizontal(),
-
-            // Picture::make('book.picture')
-            //     ->acceptedFiles('.jpg,.jpeg,.png')
-            //     ->groups('books')
-            //     ->targetId(),
         ];
     }
 }

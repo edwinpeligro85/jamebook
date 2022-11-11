@@ -76,7 +76,6 @@ class BookListLayout extends Table
                                 ]),
                         ]);
                 }),
-            // TD::make('created_at')->sort(),
         ];
     }
 }

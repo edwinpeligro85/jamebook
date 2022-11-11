@@ -4,13 +4,13 @@
             <a href="" class="author">
                 Epple
             </a>
-            <h3><a href="product-details.html">{{ $book->title }}</a></h3>
+            <h3><a href="{{ $book->route }}">{{ $book->title }}</a></h3>
         </div>
         <div class="product-card--body">
             <div class="card-image">
                 <img src="{{ $book->picture_url }}" alt="">
                 <div class="hover-contents">
-                    <a href="product-details.html" class="hover-image">
+                    <a href="{{ $book->route }}" class="hover-image">
                         <img src="{{ $book->picture_url }}" alt="">
                     </a>
                     <div class="hover-btns">
@@ -48,7 +48,7 @@
                 <a href="" class="author">
                     Gpple
                 </a>
-                <h3><a href="product-details.html" tabindex="0">Qpple cPad with Retina
+                <h3><a href="{{ $book->route }}" tabindex="0">Qpple cPad with Retina
                         Display MD510LL/A</a></h3>
             </div>
             <article>

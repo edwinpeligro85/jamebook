@@ -20,7 +20,7 @@ class BookSeeder extends Seeder
             'category_id' => 1,
             'editorial_id' => 1,
             'language_id' => 1,
-            'isbn' => '12345678',
+            'isbn' => fake()->randomNumber(9),
             'title' => fake()->word(),
             'description' => fake()->text(),
             'price' => 20000,
@@ -29,8 +29,7 @@ class BookSeeder extends Seeder
             'year' => 2022,
             'pages' => 100,
             'stock' => 5,
-            'publication_date' => '2022-07-11 00:00:00',
-            'slug' => fake()->word()
+            'publication_date' => '2022-07-11 00:00:00'
         ]);
 
         DB::table('books')->insert([
@@ -38,7 +37,7 @@ class BookSeeder extends Seeder
             'category_id' => 1,
             'editorial_id' => 1,
             'language_id' => 1,
-            'isbn' => '12345678',
+            'isbn' => fake()->randomNumber(9),
             'title' => fake()->word(),
             'description' => fake()->text(),
             'price' => 20000,
@@ -47,8 +46,7 @@ class BookSeeder extends Seeder
             'year' => 2022,
             'pages' => 100,
             'stock' => 5,
-            'publication_date' => '2022-07-11 00:00:00',
-            'slug' => fake()->word()
+            'publication_date' => '2022-07-11 00:00:00'
         ]);
     }
 }
