@@ -34,6 +34,11 @@ class PlatformProvider extends OrchidServiceProvider
                 ->badge(function () {
                     return 6;
                 }),
+            
+            Menu::make('Pedidos')
+                ->icon('basket')
+                ->route('platform.orders')
+                ->title('Administrar Pedidos'),
 
             Menu::make('Libros')
                 ->icon('book-open')

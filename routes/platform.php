@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Models\Order;
 use App\Orchid\Screens\CatalogManager\Author\AuthorEditScreen;
 use App\Orchid\Screens\CatalogManager\Author\AuthorListScreen;
 use App\Orchid\Screens\CatalogManager\Book\BookEditScreen;
@@ -13,6 +14,8 @@ use App\Orchid\Screens\Examples\ExampleFieldsScreen;
 use App\Orchid\Screens\Examples\ExampleLayoutsScreen;
 use App\Orchid\Screens\Examples\ExampleScreen;
 use App\Orchid\Screens\Examples\ExampleTextEditorsScreen;
+use App\Orchid\Screens\Order\OrderDetailScreen;
+use App\Orchid\Screens\Order\OrderListScreen;
 use App\Orchid\Screens\PlatformScreen;
 use App\Orchid\Screens\Role\RoleEditScreen;
 use App\Orchid\Screens\Role\RoleListScreen;
@@ -36,6 +39,24 @@ use Tabuna\Breadcrumbs\Trail;
 // Main
 Route::screen('/main', PlatformScreen::class)
     ->name('platform.main');
+
+// Platform > Orders
+Route::screen('orders', OrderListScreen::class)
+    ->name('platform.orders')
+    ->breadcrumbs(function (Trail $trail) {
+        return $trail
+            ->parent('platform.index')
+            ->push('Pedidos', route('platform.orders'));
+    });
+
+// Platform > Order > Detail
+Route::screen('orders/{order}/detail', OrderDetailScreen::class)
+    ->name('platform.orders.detail')
+    ->breadcrumbs(function (Trail $trail,Order $order) {
+        return $trail
+            ->parent('platform.orders')
+            ->push('Orden - ' . $order->reference, route('platform.orders.detail', $order));
+    });
 
 // Platform > Catalog Manager > Books
 Route::screen('catalog-manager/books', BookListScreen::class)
