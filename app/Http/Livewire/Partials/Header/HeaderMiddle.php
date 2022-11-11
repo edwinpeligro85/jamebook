@@ -18,7 +18,6 @@ class HeaderMiddle extends Component
 
     public function render()
     {
-        // dd($cart->getItems());
         return view('livewire.partials.header.header-middle', [
             'total' => $this->cart->getTotal(),
             'items' => $this->cart->getItems(),

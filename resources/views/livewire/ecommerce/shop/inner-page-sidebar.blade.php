@@ -12,7 +12,7 @@
     @endif
 
     <!-- Price -->
-    <div class="single-block">
+    {{-- <div class="single-block">
         <h3 class="sidebar-title">Fillter By Price</h3>
         <div class="range-slider pt--30">
             <div class="sb-range-slider"></div>
@@ -22,7 +22,7 @@
                 </p>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <!-- Editorial -->
     @if ($editorials->count() > 0)
