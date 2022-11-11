@@ -11,6 +11,7 @@ use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Fields\Picture;
 use Orchid\Screen\Fields\Relation;
 use Orchid\Screen\Fields\Select;
+use Orchid\Screen\Fields\TextArea;
 use Orchid\Screen\Layouts\Rows;
 
 class BookEditLayout extends Rows
@@ -53,6 +54,12 @@ class BookEditLayout extends Rows
                 ->horizontal()
                 ->required()
                 ->max(255),
+
+            TextArea::make('book.description')
+                ->title('Descripción:')
+                ->rows(8)
+                ->horizontal()
+                ->required(),
 
             Relation::make('book.author_id')
                 ->fromModel(Author::class, 'first_name')
