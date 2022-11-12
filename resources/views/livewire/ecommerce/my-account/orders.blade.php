@@ -2,50 +2,40 @@
     <div class="myaccount-content">
         <h3>Orders</h3>
         <div class="myaccount-table table-responsive text-center">
-            <table class="table table-bordered">
-                <thead class="thead-light">
-                    <tr>
-                        <th>No</th>
-                        <th>Name</th>
-                        <th>Date</th>
-                        <th>Status</th>
-                        <th>Total</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Mostarizing Oil</td>
-                        <td>Aug 22, 2018</td>
-                        <td>Pending</td>
-                        <td>$45</td>
-                        <td>
-                            <a href="cart.html" class="btn">View</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Katopeno Altuni</td>
-                        <td>July 22, 2018</td>
-                        <td>Approved</td>
-                        <td>$100</td>
-                        <td>
-                            <a href="cart.html" class="btn">View</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Murikhete Paris</td>
-                        <td>June 12, 2017</td>
-                        <td>On Hold</td>
-                        <td>$99</td>
-                        <td>
-                            <a href="cart.html" class="btn">View</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            @if ($orders->count() > 0)
+                <table class="table table-bordered">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>No</th>
+                            <th>Name</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Total</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($orders as $order)
+                            <tr>
+                                <td>{{ $order->display_id }}</td>
+                                <td>{{ $order->full_name }}</td>
+                                <td>{{ $order->date?->format('M j, Y') }}</td>
+                                <td>{{ $order->status }}</td>
+                                <td>$@currency($order->total_price)</td>
+                                <td>
+                                    <a href="cart.html" class="btn">View</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            @else
+                <div>
+                    <p>They don't have orders yet.</p>
+
+                    <a href="{{ route('shop.index') }}" class="btn btn-outline-success">Go shopping</a>
+                </div>
+            @endif
         </div>
     </div>
 </div>

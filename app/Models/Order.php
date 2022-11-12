@@ -63,6 +63,11 @@ class Order extends Model
         }
     }
 
+    public function getTotalPriceAttribute()
+    {
+        return $this->order_total / 100;
+    }
+
     public function getStatusAttribute()
     {
         switch (true) {
@@ -81,17 +86,22 @@ class Order extends Model
 
     public function getStatusWithDateAttribute()
     {
+        return $this->status . ' (' . $this->date . ')';
+    }
+
+    public function getDateAttribute()
+    {
         switch (true) {
             case isset($this->canceld_at):
-                return 'Cancelado (' . $this->canceld_at . ')';
+                return $this->canceld_at;
             case isset($this->delivered_at):
-                return 'Entregado (' . $this->delivered_at . ')';
+                return $this->delivered_at;
             case isset($this->paid_at):
-                return 'Pagado (' . $this->paid_at . ')';
+                return $this->paid_at;
             case isset($this->reserved_at):
-                return 'Reservado (' . $this->reserved_at . ')';
+                return $this->reserved_at;
             default:
-                return 'Pendiente';
+                return $this->created_at;
         }
     }
 
