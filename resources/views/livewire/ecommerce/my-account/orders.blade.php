@@ -23,7 +23,7 @@
                                 <td>{{ $order->status }}</td>
                                 <td>$@currency($order->total_price)</td>
                                 <td>
-                                    <a href="cart.html" class="btn">View</a>
+                                    <a href="{{ route('order.complete', $order->id) }}" class="btn">View</a>
                                 </td>
                             </tr>
                         @endforeach

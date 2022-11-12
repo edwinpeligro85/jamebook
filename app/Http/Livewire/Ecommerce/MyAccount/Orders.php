@@ -12,7 +12,6 @@ class Orders extends Component
     public function mount()
     {
         $user = auth()->user();
-        // dd($user);
         $this->orders = $user->orders;
     }
 

@@ -68,6 +68,11 @@ class Order extends Model
         return $this->order_total / 100;
     }
 
+    public function getSubTotalPriceAttribute()
+    {
+        return $this->sub_total / 100;
+    }
+
     public function getStatusAttribute()
     {
         switch (true) {

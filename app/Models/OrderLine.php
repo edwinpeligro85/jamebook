@@ -27,4 +27,9 @@ class OrderLine extends Model
     {
         return $this->belongsTo(Order::class);
     }
+
+    public function getTotalPriceAttribute()
+    {
+        return $this->line_total / 100;
+    }
 }

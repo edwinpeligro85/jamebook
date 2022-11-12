@@ -3,9 +3,11 @@
 use App\Http\Livewire\Ecommerce\Auth\Index as AuthIndex;
 use App\Http\Livewire\Ecommerce\Home\Index as HomeIndex;
 use App\Http\Livewire\Ecommerce\MyAccount\Index as MyAccountIndex;
+use App\Http\Livewire\Ecommerce\Order\Complete as OrderComplete;
 use App\Http\Livewire\Ecommerce\Shop\Index as ShopIndex;
 use App\Http\Livewire\Ecommerce\Shop\BookDetail\Index as BookDetailIndex;
 use App\Models\Book;
+use App\Models\Order;
 use Illuminate\Support\Facades\Route;
 use Tabuna\Breadcrumbs\Trail;
 
@@ -48,4 +50,11 @@ Route::get('/shop/{book}', BookDetailIndex::class)
         fn (Trail $trail, Book $book) =>
         $trail->parent('home')
             ->push(_('Book Detail') . ' - ' . $book->title, route('shop.show-book', $book->slug))
+    );
+
+Route::get('/order-complete/{order}', OrderComplete::class)
+    ->name('order.complete')
+    ->breadcrumbs(
+        fn (Trail $trail, Order $order) =>
+        $trail->parent('home')->push(_('Order Complete'), route('order.complete', $order->id))
     );
