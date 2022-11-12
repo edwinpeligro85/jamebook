@@ -17,9 +17,8 @@
                         </a> <em class="fas fa-chevron-down dropdown-arrow"></em>
 
                         <ul class="dropdown-box">
-                            <li><a href="{{ route('my-account.index') }}">My Account</a></li>
-                            <li><a href="">Order History</a></li>
-                            <li><a href="">Transactions</a></li>
+                            <li><a href="{{ route('my-account.index', ['tab' => 'dashboard']) }}">My Account</a></li>
+                            <li><a href="{{ route('my-account.index', ['tab' => 'orders']) }}">Order History</a></li>
                             <li>
                                 <a wire:click="logout" href="#">
                                     <em class="fas fa-sign-out-alt"></em> Logout

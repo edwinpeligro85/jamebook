@@ -36,7 +36,7 @@
     @livewireScripts
 
     <!-- Use Minified Plugins Version For Fast Page Load -->
-    @vite(['resources/js/plugins.js', 'resources/js/custom.js'])
+    @vite(['resources/js/app.js', 'resources/js/plugins.js', 'resources/js/custom.js'])
 
     @stack('js')
 </body>

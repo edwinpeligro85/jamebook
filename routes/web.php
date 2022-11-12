@@ -31,13 +31,16 @@ Route::get('/auth/login-register', AuthIndex::class)
     );
 
 Route::get('/my-account', MyAccountIndex::class)
+    ->middleware('auth')
     ->name('my-account.index')
     ->breadcrumbs(
         fn (Trail $trail) =>
         $trail->parent('home')->push(_('My Account'), 'my-account.index')
     );
 
-Route::get('/shop', ShopIndex::class)->name('shop.index');
+Route::get('/shop', ShopIndex::class)->name('shop.index')
+    ->breadcrumbs(fn (Trail $trail) =>
+    $trail->parent('home')->push('Shop', 'shop.index'));
 
 Route::get('/shop/{book}', BookDetailIndex::class)
     ->name('shop.show-book')
