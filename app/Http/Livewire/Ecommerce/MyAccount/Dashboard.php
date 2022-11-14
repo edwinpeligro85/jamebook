@@ -6,6 +6,8 @@ use Livewire\Component;
 
 class Dashboard extends Component
 {
+    protected $listeners = ['refreshViews' => '$refresh'];
+
     public $username;
     public bool $active = false;
 

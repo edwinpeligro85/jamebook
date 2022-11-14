@@ -75,18 +75,13 @@ class Order extends Model
 
     public function getStatusAttribute()
     {
-        switch (true) {
-            case isset($this->canceld_at):
-                return 'Cancelado';
-            case isset($this->delivered_at):
-                return 'Entregado';
-            case isset($this->paid_at):
-                return 'Pagado';
-            case isset($this->reserved_at):
-                return 'Reservado';
-            default:
-                return 'Pendiente';
-        }
+        return match (true) {
+            isset($this->canceld_at) => 'Cancelado',
+            isset($this->delivered_at) => 'Entregado',
+            isset($this->paid_at) => 'Pagado',
+            isset($this->reserved_at) => 'Reservado',
+            default => 'Pendiente',
+        };
     }
 
     public function getStatusWithDateAttribute()
@@ -96,27 +91,23 @@ class Order extends Model
 
     public function getDateAttribute()
     {
-        switch (true) {
-            case isset($this->canceld_at):
-                return $this->canceld_at;
-            case isset($this->delivered_at):
-                return $this->delivered_at;
-            case isset($this->paid_at):
-                return $this->paid_at;
-            case isset($this->reserved_at):
-                return $this->reserved_at;
-            default:
-                return $this->created_at;
-        }
+        return match (true) {
+            isset($this->canceld_at) => $this->canceld_at,
+            isset($this->delivered_at) => $this->delivered_at,
+            isset($this->paid_at) => $this->paid_at,
+            isset($this->reserved_at) => $this->reserved_at,
+            default => $this->created_at,
+        };
     }
 
     public function getFullNameAttribute()
     {
-        return ucwords($this->shipping_firstname . " " . $this->shipping_lastname);
+        return ucwords("{$this->shipping_firstname} {$this->shipping_lastname}");
     }
 
     public function getFullShippingAddressAttribute()
     {
-        return ucwords($this->shipping_address . ", " . $this->shipping_city . " - " . $this->shipping_state . ", " . $this->shipping_country);
+        return ucwords("{$this->shipping_address},
+         {$this->shipping_city} - {$this->shipping_state}, {$this->shipping_country}");
     }
 }

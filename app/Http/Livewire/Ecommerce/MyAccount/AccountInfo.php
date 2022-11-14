@@ -52,6 +52,7 @@ class AccountInfo extends Component
         }
 
         $this->user->save();
+        $this->emit('refreshViews');
         session()->flash('success_message', _('Changes Successfully'));
     }
 }
