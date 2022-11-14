@@ -34,6 +34,6 @@ class HeaderMiddle extends Component
     {
         $this->cart->removeItem($hash, false);
         $this->emit('cartItemRemoved', $id);
-        $this->emitUp('cartUpdated');
+        $this->emit('cartUpdated');
     }
 }
