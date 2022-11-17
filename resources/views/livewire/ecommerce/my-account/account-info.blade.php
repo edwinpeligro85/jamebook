@@ -5,11 +5,37 @@
             <form wire:submit.prevent="submit">
                 <div class="row">
                     <div class="col-12 mb--30">
-                        <input id="full-name" placeholder="Full Name" type="text" wire:model="user.name" />
+                        <input id="username" placeholder="Username" type="text" wire:model="user.username" />
+                        @error('user.username')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="col-12 col-md-6 mb--30">
+                        <input id="name" placeholder="Name" type="text" wire:model="user.name" />
                         @error('user.name')
                             <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>
+                    <div class="col-12 col-md-6 mb--30">
+                        <input id="lastname" placeholder="Last Name" type="text" wire:model="user.lastname" />
+                        @error('user.lastname')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
+                    <div class="col-12 col-md-6 mb--30">
+                        <input id="dni" placeholder="Dni" type="text" wire:model="user.dni" />
+                        @error('user.dni')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                    <div class="col-12 col-md-6 mb--30">
+                        <input id="birthdate" placeholder="Birth Date" type="date" wire:model="user.birthdate" />
+                        @error('user.birthdate')
+                            <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
                     <div class="col-12 mb--30">
                         <input id="email" placeholder="Email Address" type="email" wire:model="user.email" />
                         @error('user.email')

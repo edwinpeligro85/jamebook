@@ -21,7 +21,11 @@ class AccountInfo extends Component
     protected function rules()
     {
         return [
-            'user.name' => 'sometimes|min:6|max:100',
+            'user.username' => 'sometimes|alpha_num|min:3|max:20|unique:users,username,' . $this->user->id,
+            'user.name' => 'sometimes|min:3|max:64',
+            'user.lastname' => 'sometimes|min:3|max:64',
+            'user.dni' => 'sometimes|min:6',
+            'user.birthdate' => 'sometimes|date',
             'user.email' => 'sometimes|unique:users,email,' . $this->user->id,
             'current_password' => 'nullable|current_password',
             'new_password' => 'nullable|min:6|confirmed',
