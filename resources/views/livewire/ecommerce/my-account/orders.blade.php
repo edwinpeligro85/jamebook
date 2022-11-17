@@ -22,8 +22,13 @@
                                 <td>{{ $order->date?->format('M j, Y') }}</td>
                                 <td>{{ $order->status }}</td>
                                 <td>$@currency($order->total_price)</td>
-                                <td>
+                                <td class="d-flex flex-column">
                                     <a href="{{ route('order.complete', $order->id) }}" class="btn">View</a>
+
+                                    @if ($order->status == 'Reservado' || $order->status == 'Pagado')
+                                        <button type="button" wire:click="cancel({{ $order->id }})"
+                                            class="btn btn-danger">Cancelar</button>
+                                    @endif
                                 </td>
                             </tr>
                         @endforeach

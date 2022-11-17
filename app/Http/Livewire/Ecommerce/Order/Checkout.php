@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Ecommerce\Order;
 
+use App\Models\Address;
 use App\Models\City;
 use App\Models\Country;
 use App\Models\Order;
@@ -16,28 +17,27 @@ class Checkout extends Component
     protected $listeners = ['setReservation'];
 
     public $user;
+    public $address;
     public Order $order;
     public $reservation;
     public $checkShipingAddress = false;
     public $location = [
-        'city' => 0,
-        'state' => 0,
+        'city' => null,
+        'state' => null,
         'country' => 47
     ];
 
     protected $rules = [
+        'address' => 'nullable|exists:addresses,id',
         'order.notes' => 'max:500',
-        'order.shipping_phone' => 'required|integer|digits_between:6,10',
-        'order.shipping_address' => 'required|min:8|max:255',
-        'order.shipping_lastname' => 'required|min:3|max:64',
-        'order.shipping_firstname' => 'required|min:2|max:64',
+        'order.shipping_phone' => 'nullable|required_without:address|integer|digits_between:6,10',
+        'order.shipping_address' => 'nullable|required_without:address|min:8|max:255',
+        'order.shipping_lastname' => 'nullable|required_without:address|min:3|max:64',
+        'order.shipping_firstname' => 'nullable|required_without:address|min:2|max:64',
 
-        'location.city' => 'exists:cities,id',
-        'location.state' => 'exists:states,id',
-        'location.country' => 'exists:countries,id',
-        // 'email' => 'required|email',
-        // 'dni' => 'min:6',
-        // required_unless:anotherfield,value,...
+        'location.city' => 'nullable|required_without:address|exists:cities,id',
+        'location.state' => 'nullable|required_without:address|exists:states,id',
+        'location.country' => 'nullable|required_without:address|exists:countries,id',
     ];
 
     protected $validationAttributes = [
@@ -46,9 +46,9 @@ class Checkout extends Component
         'order.shipping_lastname' => 'apellido',
         'order.shipping_firstname' => 'nombre',
 
-        'locationcity' => 'pueblo o ciudad',
+        'location.city' => 'pueblo o ciudad',
         'location.state' => 'departamento',
-        // 'dni' => 'Documento',
+        'address' => 'dirección',
     ];
 
     public function mount()
@@ -96,13 +96,6 @@ class Checkout extends Component
     {
         $data = $this->validate();
 
-        $this->order->shipping_city = collect($this->location['cities'])
-            ->firstWhere('id', $data['location']['city'])['name'];
-        $this->order->shipping_state = collect($this->location['states'])
-            ->firstWhere('id', $data['location']['state'])['name'];
-        $this->order->shipping_country = collect($this->location['countries'])
-            ->firstWhere('id', $data['location']['country'])['name'];
-
         $cart = Cart::name('shopping');
 
         if ($this->reservation) {
@@ -111,6 +104,7 @@ class Checkout extends Component
             $this->order->paid_at = Carbon::now();
         }
 
+        $this->mapAddress($data['location']);
         $lines = $this->mapOrderLines($cart->getItems());
 
         $this->order->user()->associate($this->user);
@@ -145,5 +139,26 @@ class Checkout extends Component
         }
 
         return collect($lines);
+    }
+
+    protected function mapAddress($data)
+    {
+        if ($this->address) {
+            $address = Address::find($this->address);
+            $this->order->shipping_city = $address->city;
+            $this->order->shipping_state = $address->state;
+            $this->order->shipping_phone = $address->phone;
+            $this->order->shipping_country = $address->country;
+            $this->order->shipping_address = $address->address;
+            $this->order->shipping_lastname = $address->lastname;
+            $this->order->shipping_firstname = $address->firstname;
+        } else {
+            $this->order->shipping_city = collect($this->location['cities'])
+                ->firstWhere('id', $data['city'])['name'];
+            $this->order->shipping_state = collect($this->location['states'])
+                ->firstWhere('id', $data['state'])['name'];
+            $this->order->shipping_country = collect($this->location['countries'])
+                ->firstWhere('id', $data['country'])['name'];
+        }
     }
 }

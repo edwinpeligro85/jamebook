@@ -25,13 +25,17 @@
                                 <div id="billing-form" class="mb-40">
                                     <div class="row">
                                         <div wire:ignore class="col-12 col-12 mb--20">
-                                            <label>Select an exists address*</label>
-                                            <select @disabled($checkShipingAddress) class="nice-select">
-                                                @foreach ($user->addresses as $address)
-                                                    <option value="{{ $address->id }}">{{ $address->full_address }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
+                                            <div class="form-group">
+                                                <label>Select an exists address*</label>
+                                                <select @disabled($checkShipingAddress) wire:model="address"
+                                                    class="form-control">
+                                                    @foreach ($user->addresses as $address)
+                                                        <option value="">Select an address</option>
+                                                        <option value="{{ $address->id }}">{{ $address->full_address }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                         </div>
 
                                         <div class="col-12 mb--20">
@@ -52,23 +56,23 @@
                                 <div class="row">
                                     <div class="col-md-6 col-12 mb--20">
                                         <label>First Name*</label>
-                                        <input type="text" wire:model="order.shipping_firstname" placeholder="First Name"
-                                            required />
+                                        <input type="text" wire:model="order.shipping_firstname"
+                                            placeholder="First Name" />
                                     </div>
                                     <div class="col-md-6 col-12 mb--20">
                                         <label>Last Name*</label>
-                                        <input type="text" wire:model="order.shipping_lastname" placeholder="Last Name"
-                                            required />
+                                        <input type="text" wire:model="order.shipping_lastname"
+                                            placeholder="Last Name" />
                                     </div>
                                     <div class="col-md-6 col-12 mb--20">
                                         <label>Phone no*</label>
-                                        <input type="tel" wire:model="order.shipping_phone" placeholder="Phone number"
-                                            required />
+                                        <input type="tel" wire:model="order.shipping_phone"
+                                            placeholder="Phone number" />
                                     </div>
                                     <div class="col-12 mb--20">
                                         <label>Address*</label>
                                         <input type="text" wire:model="order.shipping_address"
-                                            placeholder="Address line 1" required />
+                                            placeholder="Address line 1" />
                                     </div>
                                     <div class="col-md-6 col-12 mb--20">
 
@@ -86,6 +90,7 @@
                                         <label for="state">State*</label>
                                         <select class="form-control" wire:model="location.state" id="state">
                                             @foreach ($location['states'] as $state)
+                                                <option value="">Select a state</option>
                                                 <option value="{{ $state['id'] }}">{{ $state['name'] }}</option>
                                             @endforeach
                                         </select>
@@ -94,6 +99,7 @@
                                         <label for="city">Town/City**</label>
                                         <select class="form-control" wire:model="location.city" id="city">
                                             @foreach ($location['cities'] as $city)
+                                                <option value="">Select a city</option>
                                                 <option value="{{ $city['id'] }}">{{ $city['name'] }}</option>
                                             @endforeach
                                         </select>
