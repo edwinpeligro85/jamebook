@@ -36,6 +36,9 @@
     @livewireScripts
     @livewire('partials.modals')
 
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <x-livewire-alert::scripts />
+
     <!-- Use Minified Plugins Version For Fast Page Load -->
     @vite(['resources/js/app.js', 'resources/js/plugins.js', 'resources/js/custom.js', 'resources/js/modals.js'])
 
