@@ -16,40 +16,6 @@ class BookSeeder extends Seeder
      */
     public function run()
     {
-        Book::create([
-            'author_id' => 1,
-            'category_id' => 1,
-            'editorial_id' => 1,
-            'language_id' => 1,
-            'isbn' => fake()->randomNumber(9),
-            'title' => fake()->word(),
-            'slug' => fake()->slug(),
-            'description' => fake()->text(),
-            'price' => 20000,
-            'promotional_price' => 20000,
-            'condition' => 'new',
-            'year' => 2022,
-            'pages' => 100,
-            'stock' => 5,
-            'publication_date' => '2022-07-11 00:00:00'
-        ]);
-
-        Book::create([
-            'author_id' => 1,
-            'category_id' => 1,
-            'editorial_id' => 1,
-            'language_id' => 1,
-            'isbn' => fake()->randomNumber(9),
-            'title' => fake()->word(),
-            'slug' => fake()->slug(),
-            'description' => fake()->text(),
-            'price' => 20000,
-            'promotional_price' => 20000,
-            'condition' => 'new',
-            'year' => 2022,
-            'pages' => 100,
-            'stock' => 5,
-            'publication_date' => '2022-07-11 00:00:00'
-        ]);
+        Book::factory()->count(100)->create();
     }
 }
