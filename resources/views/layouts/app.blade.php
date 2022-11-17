@@ -14,8 +14,8 @@
     <meta name="theme-color" content="#ffffff">
 
     @vite(['resources/css/plugins.css', 'resources/css/main.css'])
-
     @livewireStyles
+    @stack('css')
 </head>
 
 <body>
@@ -34,9 +34,10 @@
     </div>
 
     @livewireScripts
+    @livewire('partials.modals')
 
     <!-- Use Minified Plugins Version For Fast Page Load -->
-    @vite(['resources/js/app.js', 'resources/js/plugins.js', 'resources/js/custom.js'])
+    @vite(['resources/js/app.js', 'resources/js/plugins.js', 'resources/js/custom.js', 'resources/js/modals.js'])
 
     @stack('js')
 </body>

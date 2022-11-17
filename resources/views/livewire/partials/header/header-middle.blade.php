@@ -68,7 +68,7 @@
                                 <div class="btn-block">
                                     <a href="cart.html" class="btn">View Cart <em
                                             class="fas fa-chevron-right ml-2"></em></a>
-                                    <a href="checkout.html" class="btn btn--primary">Check Out <em
+                                    <a href="{{ route('order.checkout') }}" class="btn btn--primary">Check Out <em
                                             class="fas fa-chevron-right ml-2"></em></a>
                                 </div>
                             </div>

@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class HeaderMiddle extends Component
 {
-    protected $listeners = ['cartUpdated' => '$refresh'];
+    protected $listeners = ['cartUpdated' => '$refresh', 'refreshViews' => '$refresh'];
 
     protected $cart;
 

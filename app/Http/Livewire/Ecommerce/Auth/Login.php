@@ -7,6 +7,7 @@ use Livewire\Component;
 
 class Login extends Component
 {
+    public $inCheckout = false;
     public $email;
     public $password;
 
@@ -31,9 +32,9 @@ class Login extends Component
 
         if (Auth::attempt($credentials)) {
             session()->regenerate();
- 
+
             session()->flash('success_message', _('Login Successfully'));
-            return redirect()->intended('my-account');
+            return redirect()->intended($this->inCheckout ? 'order/checkout' : 'my-account');
         }
 
         $this->addError('email', _('The provided credentials do not match our records.'));
