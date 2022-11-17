@@ -119,4 +119,9 @@ class Book extends Model implements UseCartable
     {
         return $this->in_promotion ? round((($this->price - $this->promotional_price) / $this->price) * 100, 2) : 0;
     }
+    
+    public function scopeNewBooks()
+    {
+        return $this->whereDate('created_at','>=',now()->subDays(3));
+    }
 }

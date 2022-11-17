@@ -48,7 +48,7 @@ class BookListLayout extends Table
 
             TD::make('price', 'Precio')
                 ->render(function (Book $book) {
-                return ucwords($book->price);
+                return number_format($book->price,2);
                 }),
 
             TD::make('stock', 'Stock')

@@ -46,7 +46,7 @@ class BookDeletedListLayout extends Table
 
             TD::make('price', 'Precio')
                 ->render(function (Book $book) {
-                return ucwords($book->price);
+                    return number_format($book->price,2);
                 }),
 
             TD::make('deleted_at', 'Fecha eliminación')
