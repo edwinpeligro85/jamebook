@@ -21,6 +21,7 @@ class Order extends Model
         'shipping_state',
         'shipping_country',
 
+        'notes',
         'tax_total',
         'sub_total',
         'order_total',

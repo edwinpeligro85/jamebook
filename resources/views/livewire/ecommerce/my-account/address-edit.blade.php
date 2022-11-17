@@ -26,7 +26,6 @@
                             <em class="fa fa-edit mr-1"></em>Edit Address
                         </button>
                     </div>
-
                 @empty
                     <div class="col-12">
                         <button type="button"

@@ -7,8 +7,6 @@ use Livewire\Component;
 
 class AddressEdit extends Component
 {
-    protected $listeners = ['savedAddress' => '$refresh'];
-
     public bool $active = false;
     public $addresses;
 

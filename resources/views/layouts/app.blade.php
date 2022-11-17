@@ -14,8 +14,8 @@
     <meta name="theme-color" content="#ffffff">
 
     @vite(['resources/css/plugins.css', 'resources/css/main.css'])
-
     @livewireStyles
+    @stack('css')
 </head>
 
 <body>

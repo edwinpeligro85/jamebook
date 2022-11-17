@@ -3,6 +3,7 @@
 use App\Http\Livewire\Ecommerce\Auth\Index as AuthIndex;
 use App\Http\Livewire\Ecommerce\Home\Index as HomeIndex;
 use App\Http\Livewire\Ecommerce\MyAccount\Index as MyAccountIndex;
+use App\Http\Livewire\Ecommerce\Order\Checkout as OrderCheckout;
 use App\Http\Livewire\Ecommerce\Order\Complete as OrderComplete;
 use App\Http\Livewire\Ecommerce\Shop\Index as ShopIndex;
 use App\Http\Livewire\Ecommerce\Shop\BookDetail\Index as BookDetailIndex;
@@ -52,7 +53,14 @@ Route::get('/shop/{book}', BookDetailIndex::class)
             ->push(_('Book Detail') . ' - ' . $book->title, route('shop.show-book', $book->slug))
     );
 
-Route::get('/order-complete/{order}', OrderComplete::class)
+Route::get('/order/checkout', OrderCheckout::class)
+    ->name('order.checkout')
+    ->breadcrumbs(
+        fn (Trail $trail) =>
+        $trail->parent('home')->push(_('Checkout'), 'order.checkout')
+    );
+
+Route::get('/order/complete/{order}', OrderComplete::class)
     ->name('order.complete')
     ->breadcrumbs(
         fn (Trail $trail, Order $order) =>

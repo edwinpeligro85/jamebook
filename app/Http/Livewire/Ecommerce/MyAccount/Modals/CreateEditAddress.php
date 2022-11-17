@@ -94,8 +94,6 @@ class CreateEditAddress extends Component
             $this->address->save();
         }
 
-
-        $this->emit('hideModal');
-        $this->emit('savedAddress');
+        return redirect()->route('my-account.index', ['tab' => 'address-edit']);
     }
 }
