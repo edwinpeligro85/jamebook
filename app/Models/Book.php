@@ -84,14 +84,14 @@ class Book extends Model implements UseCartable
         return $this->belongsTo(Language::class);
     }
 
-    public function pictures()
+    public function picture()
     {
         return $this->hasOne(Attachment::class, 'id', 'picture_id')->withDefault();
     }
 
     public function getPictureUrlAttribute()
     {
-        $picture = $this->pictures;
+        $picture = $this->picture;
 
         if ($picture->exists) {
             return config('app.url') . "/storage/" . $picture->physicalPath();
