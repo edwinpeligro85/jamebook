@@ -48,6 +48,11 @@ class PlatformProvider extends OrchidServiceProvider
             Menu::make('Autores')
                 ->icon('brush')
                 ->route('platform.catalog-manager.authors'),
+                
+            Menu::make('Noticias')
+                ->icon('rocket')
+                ->route('platform.news')
+                ->title('Comunicación'),
 
             // Menu::make('Dropdown menu')
             //     ->icon('code')

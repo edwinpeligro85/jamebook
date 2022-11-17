@@ -14,6 +14,7 @@ use App\Orchid\Screens\Examples\ExampleFieldsScreen;
 use App\Orchid\Screens\Examples\ExampleLayoutsScreen;
 use App\Orchid\Screens\Examples\ExampleScreen;
 use App\Orchid\Screens\Examples\ExampleTextEditorsScreen;
+use App\Orchid\Screens\New\NewListScreen;
 use App\Orchid\Screens\Order\OrderDetailScreen;
 use App\Orchid\Screens\Order\OrderListScreen;
 use App\Orchid\Screens\PlatformScreen;
@@ -107,6 +108,15 @@ Route::screen('catalog-manager/authors/{author}/edit', AuthorEditScreen::class)
         return $trail
             ->parent('platform.catalog-manager.authors')
             ->push('Autor - ' . $author->first_name, route('platform.catalog-manager.authors.edit', $author));
+    });
+
+// Platform > news
+Route::screen('news', NewListScreen::class)
+    ->name('platform.news')
+    ->breadcrumbs(function (Trail $trail) {
+        return $trail
+            ->parent('platform.catalog-manager.authors')
+            ->push('Noticias', route('platform.news'));
     });
 
 

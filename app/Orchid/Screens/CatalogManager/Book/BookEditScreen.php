@@ -71,7 +71,7 @@ class BookEditScreen extends Screen
     public function save(Book $book, Request $request)
     {
         if ($request->picture_id) {
-            $book->picture->delete();
+            $book->picture ? $book->picture->delete() : null;
             $book->picture_id = $request->picture_id;
         }
         $book->fill($request->get('book'));

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Book;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -15,7 +16,7 @@ class BookSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('books')->insert([
+        Book::create([
             'author_id' => 1,
             'category_id' => 1,
             'editorial_id' => 1,
@@ -33,7 +34,7 @@ class BookSeeder extends Seeder
             'publication_date' => '2022-07-11 00:00:00'
         ]);
 
-        DB::table('books')->insert([
+        Book::create([
             'author_id' => 1,
             'category_id' => 1,
             'editorial_id' => 1,
