@@ -132,6 +132,6 @@ class Book extends Model implements UseCartable
     
     public function scopeNewBooks()
     {
-        return $this->whereDate('created_at','>=',now()->subDays(3));
+        return $this->whereDate('created_at', '>=', now()->subDays(3));
     }
 }
