@@ -19,8 +19,8 @@ class BookFactory extends Factory
     public function definition()
     {
         return [
-            'author_id' => 1,
-            'category_id' => 1,
+            'author_id' => $this->faker->numberBetween(1,10),
+            'category_id' => $this->faker->numberBetween(1,10),
             'editorial_id' => 1,
             'language_id' => 1,
             'isbn' => $this->faker->isbn10(),

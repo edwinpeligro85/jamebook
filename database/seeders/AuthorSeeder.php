@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Author;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -15,9 +16,6 @@ class AuthorSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('authors')->insert([
-            'first_name' => fake()->word(),
-            'last_name' => fake()->word()
-        ]);
+        Author::factory()->count(10)->create();
     }
 }

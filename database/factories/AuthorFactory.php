@@ -2,16 +2,13 @@
 
 namespace Database\Factories;
 
-use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Category>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Author>
  */
-class CategoryFactory extends Factory
+class AuthorFactory extends Factory
 {
-    protected $model = Category::class;
-
     /**
      * Define the model's default state.
      *
@@ -20,7 +17,8 @@ class CategoryFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->word()
+            'first_name' => fake()->word(),
+            'last_name' => fake()->word()
         ];
     }
 }
