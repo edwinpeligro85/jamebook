@@ -36,13 +36,11 @@ class BookDeletedListLayout extends Table
                 }),
                 
             TD::make('isbn', 'ISBN')
-                ->filter(Input::make())
                 ->render(function (Book $book) {
                 return ucwords($book->isbn);
                 }),
 
             TD::make('title', 'Titulo')
-                ->filter(Input::make())
                 ->render(function (Book $book) {
                 return ucwords($book->title);
                 }),
