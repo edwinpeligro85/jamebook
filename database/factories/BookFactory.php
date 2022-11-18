@@ -34,7 +34,7 @@ class BookFactory extends Factory
             'pages' => $this->faker->randomNumber(3),
             'stock' => $this->faker->randomNumber(2),
             'publication_date' => $this->faker->date(),
-            'created_at' => $this->faker->dateTimeBetween('-2 weeks','now'),
+            'created_at' => $this->faker->dateTimeBetween('-2 weeks', 'now'),
         ];
     }
 }

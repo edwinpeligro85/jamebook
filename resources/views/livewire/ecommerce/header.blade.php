@@ -14,67 +14,16 @@
                     <div class="col-lg-3">
                         <nav class="category-nav primary-nav" aria-label="">
                             <div>
-                                <a href="javascript:void(0)" class="category-trigger"><i class="fa fa-bars"></i>Browse
-                                    categories</a>
+                                <a href="javascript:void(0)" class="category-trigger">
+                                    <em class="fa fa-bars mr-1"></em> Browse categories
+                                </a>
+
                                 <ul class="category-menu">
-                                    <li class="cat-item has-children">
-                                        <a href="#">Arts & Photography</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="#">Bags & Cases</a></li>
-                                            <li><a href="#">Binoculars & Scopes</a></li>
-                                            <li><a href="#">Digital Cameras</a></li>
-                                            <li><a href="#">Film Photography</a></li>
-                                            <li><a href="#">Lighting & Studio</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="cat-item has-children mega-menu">
-                                        <a href="#">Biographies</a>
-                                        <ul class="sub-menu">
-                                            <li class="single-block">
-                                                <h3 class="title">WHEEL SIMULATORS</h3>
-                                                <ul>
-                                                    <li><a href="#">Bags & Cases</a></li>
-                                                    <li><a href="#">Binoculars & Scopes</a></li>
-                                                    <li><a href="#">Digital Cameras</a></li>
-                                                    <li><a href="#">Film Photography</a></li>
-                                                    <li><a href="#">Lighting & Studio</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="single-block">
-                                                <h3 class="title">WHEEL SIMULATORS</h3>
-                                                <ul>
-                                                    <li><a href="#">Bags & Cases</a></li>
-                                                    <li><a href="#">Binoculars & Scopes</a></li>
-                                                    <li><a href="#">Digital Cameras</a></li>
-                                                    <li><a href="#">Film Photography</a></li>
-                                                    <li><a href="#">Lighting & Studio</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="single-block">
-                                                <h3 class="title">WHEEL SIMULATORS</h3>
-                                                <ul>
-                                                    <li><a href="#">Bags & Cases</a></li>
-                                                    <li><a href="#">Binoculars & Scopes</a></li>
-                                                    <li><a href="#">Digital Cameras</a></li>
-                                                    <li><a href="#">Film Photography</a></li>
-                                                    <li><a href="#">Lighting & Studio</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="single-block">
-                                                <h3 class="title">WHEEL SIMULATORS</h3>
-                                                <ul>
-                                                    <li><a href="#">Bags & Cases</a></li>
-                                                    <li><a href="#">Binoculars & Scopes</a></li>
-                                                    <li><a href="#">Digital Cameras</a></li>
-                                                    <li><a href="#">Film Photography</a></li>
-                                                    <li><a href="#">Lighting & Studio</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="cat-item">
-                                        <a href="#" class="js-expand-hidden-menu">More Categories</a>
-                                    </li>
+                                    @foreach ($categories as $category)
+                                        <li class="cat-item">
+                                            <a href="#" class="js-expand-hidden-menu">{{ $category->name }}</a>
+                                        </li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </nav>
@@ -114,8 +63,7 @@
                     <div class="col-md-5 order-3 order-md-2">
                         <nav class="category-nav" aria-label="">
                             <div>
-                                <a href="javascript:void(0)" class="category-trigger"><i
-                                        class="fa fa-bars"></i>Browse
+                                <a href="javascript:void(0)" class="category-trigger"><i class="fa fa-bars"></i>Browse
                                     categories</a>
                                 <ul class="category-menu">
                                     <li class="cat-item has-children">

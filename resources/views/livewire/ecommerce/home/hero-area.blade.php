@@ -4,7 +4,8 @@
             <div class="col-lg-9 offset-lg-3">
                 <div class="sb-slick-slider"
                     data-slick-setting='{ "autoplay": true, "autoplaySpeed": 8000, "slidesToShow": 1, "dots":true }'>
-                    <div class="single-slide bg-image bg-overlay--white" data-bg="image/bg-images/home-4-slider-1.jpg">
+                    <div class="single-slide bg-image bg-overlay--white"
+                        data-bg="{{ asset('images/home/hero-area/1.png') }}">
                         <div class="home-content text-left pl--30">
                             <div class="row">
                                 <div class="col-lg-5">
@@ -19,7 +20,8 @@
                         </div>
                     </div>
 
-                    <div class="single-slide bg-image bg-overlay--dark" data-bg="image/bg-images/home-4-slider-2.jpg">
+                    <div class="single-slide bg-image bg-overlay--dark"
+                        data-bg="{{ asset('images/home/hero-area/2.png') }}">
                         <div class="home-content text-center">
                             <div class="row justify-content-end">
                                 <div class="col-lg-8">
