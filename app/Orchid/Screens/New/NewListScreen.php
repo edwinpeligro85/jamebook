@@ -16,7 +16,7 @@ class NewListScreen extends Screen
     public function query(): iterable
     {
         return [
-            'books' => Book::whereDate('created_at','>=',now()->subDays(3))->paginate()
+            'books' => Book::newBooks()->paginate()
         ];
     }
 

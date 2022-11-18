@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use EloquentFilter\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,6 +9,7 @@ use Jackiedo\Cart\Contracts\UseCartable;
 use Jackiedo\Cart\Traits\CanUseCart;
 use Orchid\Attachment\Attachable;
 use Orchid\Attachment\Models\Attachment;
+use Orchid\Filters\Filterable;
 use Orchid\Screen\AsSource;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
@@ -20,6 +20,16 @@ class Book extends Model implements UseCartable
 
     protected $cartTitleField = 'title';
     protected $cartPriceField = 'display_price';
+
+    protected $allowedFilters = [
+        'isbn',
+        'title'
+    ];
+
+    protected $allowedSorts  = [
+        'isbn',
+        'title'
+    ];
 
     /**
      * The attributes that are mass assignable.
@@ -118,5 +128,10 @@ class Book extends Model implements UseCartable
     public function getDiscountPercentageAttribute(): float
     {
         return $this->in_promotion ? round((($this->price - $this->promotional_price) / $this->price) * 100, 2) : 0;
+    }
+    
+    public function scopeNewBooks()
+    {
+        return $this->whereDate('created_at','>=',now()->subDays(3));
     }
 }

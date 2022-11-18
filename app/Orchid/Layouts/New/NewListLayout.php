@@ -44,7 +44,7 @@ class NewListLayout extends Table
 
             TD::make('price', 'Precio')
                 ->render(function (Book $book) {
-                return number_format($book->price,0);
+                    return number_format($book->price,2);
                 }),
         ];
     }

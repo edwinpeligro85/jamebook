@@ -20,8 +20,8 @@ class BookListScreen extends Screen
     public function query(): iterable
     {
         return [
-            'books' => Book::paginate(),
-            'booksDeleted' => Book::onlyTrashed()->paginate()
+            'books' => Book::filters()->paginate(),
+            'booksDeleted' => Book::filters()->onlyTrashed()->paginate()
         ];
     }
 

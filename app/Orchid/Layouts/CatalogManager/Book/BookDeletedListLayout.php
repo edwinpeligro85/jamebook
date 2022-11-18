@@ -5,6 +5,7 @@ namespace App\Orchid\Layouts\CatalogManager\Book;
 use App\Models\Book;
 use Orchid\Screen\Actions\Button;
 use Orchid\Screen\Actions\DropDown;
+use Orchid\Screen\Fields\Input;
 use Orchid\Screen\Layouts\Table;
 use Orchid\Screen\TD;
 
@@ -35,18 +36,20 @@ class BookDeletedListLayout extends Table
                 }),
                 
             TD::make('isbn', 'ISBN')
+                ->filter(Input::make())
                 ->render(function (Book $book) {
                 return ucwords($book->isbn);
                 }),
 
             TD::make('title', 'Titulo')
+                ->filter(Input::make())
                 ->render(function (Book $book) {
                 return ucwords($book->title);
                 }),
 
             TD::make('price', 'Precio')
                 ->render(function (Book $book) {
-                return ucwords($book->price);
+                    return number_format($book->price,2);
                 }),
 
             TD::make('deleted_at', 'Fecha eliminación')
